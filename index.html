@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Le Bois de Serres</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header>Le Bois de Serres</header>
+
+  <div class="home">
+
+    <div class="left">
+      <p class="intro-text">
+        Plongez au cœur du Bois de Serres à travers une sélection de clichés exclusifs. 
+        <span>Cliquez sur les photos pour révéler la localisation exacte du cliché et préparer votre prochaine sortie au bois !</span>
+      </p>
+      
+      <a href="galerie.html" class="btn-galerie">
+        Explorer la galerie photos
+      </a>
+
+      <div class="home-gallery">
+        <img src="photos/bois1.jpg" alt="Bois 1" onclick="openModal(this.src)">
+        <img src="photos/bois2.jpg" alt="Bois 2" onclick="openModal(this.src)">
+        <img src="photos/bois3.png" alt="Bois 3" onclick="openModal(this.src)">
+      </div>
+    </div>
+
+    <div class="right">
+      <div class="text-content">
+        
+        <h3>Qu'est-ce qu'un ENS ?</h3>
+        <p>
+          ENS est l'acronyme de Espace Naturel Sensible. C'est un territoire protégé par les collectivités locales (départements ou métropoles) dans le but de sauvegarder des milieux naturels fragiles (zones humides, les forêts, prairies).
+        </p>
+        
+        <div class="btn-container" style="margin-bottom: 35px; margin-top: 15px;">
+          <a href="ens.html" class="btn-modal">En savoir plus</a>
+        </div>
+		
+        
+        <h3>Plan du bois</h3>
+        
+        <div class="map-container">
+          <img src="photos/plan.webp" alt="Plan du Bois de Serres" class="map-img">
+          
+          <a href="photos/plan.pdf" target="_blank" class="btn-modal btn-download">
+            Télécharger le plan
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span onclick="closeModal()" class="close">×</span>
+      <img id="modal-img">
+      <a id="mapsBtn" href="https://www.google.com/maps/search/?api=1&query=Bois+de+Serres" target="_blank">
+        <button class="btn-modal">S’y rendre</button>
+      </a>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+</body>
+</html>

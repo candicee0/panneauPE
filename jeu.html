@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Véritables Mots Croisés - Nature</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .crossword-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px 20px;
+    }
+    
+    /* VRAIE GRILLE DE MOTS CROISÉS */
+    .crossword-grid {
+      border-collapse: collapse;
+      margin-bottom: 30px;
+      background-color: #2e5d34; /* Les cases noires seront la couleur du fond */
+      border: 4px solid #2e5d34;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+    
+    .crossword-grid td {
+      width: 45px;
+      height: 45px;
+      padding: 0;
+      position: relative;
+      text-align: center;
+      vertical-align: middle;
+    }
+    
+    /* Case blanche (où on peut écrire) */
+    .crossword-grid td.white-cell {
+      background-color: #ffffff;
+      border: 1px solid #ccc;
+    }
+    
+    /* Case noire (bloquée) */
+    .crossword-grid td.black-cell {
+      background-color: #2e5d34;
+    }
+    
+    /* Zone de saisie de la lettre */
+    .crossword-grid input {
+      width: 100%;
+      height: 100%;
+      border: none;
+      background: transparent;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      text-transform: uppercase;
+      font-family: inherit;
+      color: #333;
+    }
+    
+    .crossword-grid input:focus {
+      outline: none;
+      background-color: #e8f5e9; /* Petit flash vert quand on sélectionne la case */
+    }
+    
+    /* Petits numéros d'indices dans les coins des cases */
+    .case-number {
+      position: absolute;
+      top: 2px;
+      left: 4px;
+      font-size: 11px;
+      color: #555;
+      font-weight: bold;
+      pointer-events: none;
+    }
+    
+    /* Blocs de définitions côte à côte */
+    .definitions-flex {
+      display: flex;
+      gap: 30px;
+      max-width: 800px;
+      width: 100%;
+      margin-top: 10px;
+    }
+    
+    .definitions-bloc {
+      flex: 1;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+    
+    .definitions-bloc h3 {
+      color: #2e5d34;
+      margin-top: 0;
+      border-bottom: 2px solid #e8f5e9;
+      padding-bottom: 5px;
+    }
+    
+    .definitions-bloc ul {
+      padding-left: 20px;
+      line-height: 1.6;
+    }
+    
+    .definitions-bloc li {
+      margin-bottom: 10px;
+      font-size: 15px;
+    }
+    
+    .game-buttons {
+      margin-top: 25px;
+      display: flex;
+      gap: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <a href="index.html" class="btn-retour" title="Retour à l'accueil">←</a>
+
+  <header>Mots Croisés de la Forêt</header>
+
+  <div class="crossword-container">
+    
+    <table class="crossword-grid" id="grid">
+      <tr>
+        <td class="white-cell"><span class="case-number">1</span><input type="text" maxlength="1" data-letter="B"></td>
+        <td class="white-cell"><input type="text" maxlength="1" data-letter="O"></td>
+        <td class="white-cell"><input type="text" maxlength="1" data-letter="I"></td>
+        <td class="white-cell"><span class="case-number">2</span><input type="text" maxlength="1" data-letter="S"></td>
+        <td class="black-cell"></td>
+        <td class="black-cell"></td>
+        <td class="black-cell"></td>
+        <td class="black-cell"></td>
+        <td class="black-cell"></td>
+      </tr>
+      <tr>
+        <td class="black-cell"></td>
+        <td class="black-cell"></td>
+        <td class="black-cell"></td>
+        <td class="white-cell"><input type="text" maxlength="1" data-letter="E"></td>
+        <td class="black-cell"></td>
+        <td class="black-cell"></td>
+        <td class="black-cell"></td>
+        <td class="black-cell"></td>
+        <td class="black-cell"></td>
+      </tr>
+      <tr>
+        <td class="black-cell"></td>
+        <td class="white-cell"><span class="case-number">3</span><input type="text" maxlength="1" data-letter="E"></td>
+        <td class="white-cell"><input type="text" maxlength="1" data-letter="N"></td>
+        <td class="white-cell"><input type="text" maxlength="1" data-letter="S"></td>
+        <td class="black-cell"></td>
+        <td class="black-cell"></td>
+        <td class="black-cell"></td>
+        <td class="black-cell"></td>
+        <td class="black-cell"></td>
+      </tr>
+      <tr>
+        <td class="black-cell"></td>
+        <td class="black-cell"></td>
+        <td class="black-cell"></td>
+        <td class="white-cell"><input type="text" maxlength="1" data-letter="I"></td>
+        <td class="black-cell"></td>
+        <td class="black-cell"></td>
+        <td class="black-cell"></td>
+        <td class="black-cell"></td>
+        <td class="black-cell"></td>
+      </tr>
+      <tr>
+        <td class="black-cell"></td>
+        <td class="black-cell"></td>
+        <td class="white-cell"><span class="case-number">4</span><input type="text" maxlength="1" data-letter="A"></td>
+        <td class="white-cell"><input type="text" maxlength="1" data-letter="R"></td>
+        <td class="white-cell"><input type="text" maxlength="1" data-letter="B"></td>
+        <td class="white-cell"><input type="text" maxlength="1" data-letter="R"></td>
+        <td class="white-cell"><input type="text" maxlength="1" data-letter="E"></td>
+        <td class="black-cell"></td>
+        <td class="black-cell"></td>
+      </tr>
+      <tr>
+        <td class="black-cell"></td>
+        <td class="black-cell"></td>
+        <td class="black-cell"></td>
+        <td class="white-cell"><input type="text" maxlength="1" data-letter="E"></td>
+        <td class="black-cell"></td>
+        <td class="black-cell"></td>
+        <td class="black-cell"></td>
+        <td class="black-cell"></td>
+        <td class="black-cell"></td>
+      </tr>
+      <tr>
+        <td class="black-cell"></td>
+        <td class="black-cell"></td>
+        <td class="black-cell"></td>
+        <td class="white-cell"><input type="text" maxlength="1" data-letter="L"></td>
+        <td class="black-cell"></td>
+        <td class="black-cell"></td>
+        <td class="black-cell"></td>
+        <td class="black-cell"></td>
+        <td class="black-cell"></td>
+      </tr>
+      <tr>
+        <td class="black-cell"></td>
+        <td class="white-cell"><span class="case-number">5</span><input type="text" maxlength="1" data-letter="F"/></td>
+        <td class="white-cell"><input type="text" maxlength="1" data-letter="O"/></td>
+        <td class="white-cell"><input type="text" maxlength="1" data-letter="R"/></td>
+        <td class="white-cell"><input type="text" maxlength="1" data-letter="E"/></td>
+        <td class="white-cell"><input type="text" maxlength="1" data-letter="T"/></td>
+        <td class="white-cell"><span class="case-number">6</span><input type="text" maxlength="1" data-letter="P"/></td>
+        <td class="white-cell"><input type="text" maxlength="1" data-letter="A"/></td>
+        <td class="white-cell"><input type="text" maxlength="1" data-letter="K"/></td>
+      </tr>
+    </table>
+
+    <div class="definitions-flex">
+      
+      <div class="definitions-bloc">
+        <h3>Horizontal (Ligne par ligne)</h3>
+        <ul>
+          <li><strong>1</strong> : Étendue d'arbres, comme celui de Serres (4 lettres).</li>
+          <li><strong>3</strong> : Sigle pour Espace Naturel Sensible (3 lettres).</li>
+          <li><strong>4</strong> : Végétal grand et majestueux possédant un tronc et des branches (5 lettres).</li>
+          <li><strong>5</strong> : Vaste territoire arboré où vivent de nombreux animaux sauvages (5 lettres).</li>
+        </ul>
+      </div>
+      
+      <div class="definitions-bloc">
+        <h3>Vertical (Colonne par colonne)</h3>
+        <ul>
+          <li><strong>2</strong> : Arbre emblématique des zones humides qui aime l'eau, souvent qualifié de "pleureur" (5 lettres). Intercepte les mots BOIS, ENS, ARBRE et FORET.</li>
+          <li><strong>6</strong> : Parcours de santé ou sentier aménagé dans les bois pour se promener (3 lettres - *ici au singulier*).</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="game-buttons">
+      <button class="btn-modal" onclick="verifierMotsCroises()">Vérifier mes réponses</button>
+      <button class="btn-modal" onclick="recommencer()" style="background-color: #666;">Effacer tout</button>
+    </div>
+    
+    <div id="game-feedback" class="feedback" style="margin-top: 25px; width: 100%; max-width: 800px; box-sizing: border-box;"></div>
+
+  </div>
+
+  <script>
+    function verifierMotsCroises() {
+      const inputs = document.querySelectorAll('#grid input');
+      let sansFaute = true;
+      let vide = false;
+
+      inputs.forEach(input => {
+        const lettreSaisie = input.value.toUpperCase().trim();
+        const lettreCorrecte = input.getAttribute('data-letter');
+
+        if (lettreSaisie === "") {
+          vide = true;
+          input.parentElement.style.backgroundColor = "#ffffff";
+        } else if (lettreSaisie === lettreCorrecte) {
+          input.parentElement.style.backgroundColor = "#c3e6cb"; // Vert pastel pour la case valide
+        } else {
+          input.parentElement.style.backgroundColor = "#f5c6cb"; // Rouge pastel pour l'erreur
+          sansFaute = false;
+        }
+      });
+
+      const feedback = document.getElementById('game-feedback');
+      feedback.style.display = "block";
+
+      if (vide) {
+        feedback.className = "feedback info";
+        feedback.innerHTML = "⚠️ Certaines cases sont encore vides ! Continue à chercher.";
+      } else if (sansFaute) {
+        feedback.className = "feedback correct";
+        feedback.innerHTML = "🎉 <strong>Incroyable, sans-faute !</strong> Tu as résolu le vrai mot croisé de l'Espace Naturel Sensible !";
+      } else {
+        feedback.className = "feedback incorrect";
+        feedback.innerHTML = "❌ <strong>Il y a des erreurs dans la grille !</strong> Regarde les cases sur fond rouge et essaie de trouver les bonnes lettres.";
+      }
+    }
+
+    function recommencer() {
+      const inputs = document.querySelectorAll('#grid input');
+      inputs.forEach(input => {
+        input.value = "";
+        input.parentElement.style.backgroundColor = "#ffffff";
+      });
+      document.getElementById('game-feedback').style.display = "none";
+    }
+  </script>
+
+</body>
+</html>

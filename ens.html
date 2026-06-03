@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Les Espaces Naturels Sensibles</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <a href="index.html" class="btn-retour" title="Retour à l'accueil">←</a>
+
+  <header>Les Espaces Naturels Sensibles (ENS)</header>
+
+  <div class="ens-container">
+    <div class="ens-content">
+      
+      <h2>Pourquoi créer un Espace Naturel Sensible ?</h2>
+      <p>
+        Les ENS ont un double objectif : <strong>préserver</strong> la biodiversité locale face à l'urbanisation et <strong>ouvrir au public</strong> ces espaces de manière contrôlée afin de sensibiliser les citoyens à la protection de l'environnement.
+      </p>
+
+      <div class="quiz-box" id="quiz-1">
+        <h4>Question 1 : Quel est le rôle principal d'un ENS ?</h4>
+        <label><input type="radio" name="q1" value="faux"> Construire de nouvelles habitations écologiques.</label>
+        <label><input type="radio" name="q1" value="vrai"> Protéger la faune, la flore et ouvrir le lieu au public.</label>
+        <label><input type="radio" name="q1" value="faux"> Autoriser la chasse et la pêche sans restriction.</label>
+        
+        <button class="btn-modal btn-quiz" onclick="verifierReponse('quiz-1', 'vrai', 'Le rôle d’un ENS est de sauvegarder la biodiversité tout en permettant au public de la découvrir intelligemment.')">Vérifier la réponse</button>
+        <div class="feedback"></div>
+      </div>
+
+      <h2>Comment fonctionne la gestion d'un ENS ?</h2>
+      <p>
+        Ce sont les départements ou les métropoles qui acquièrent ou gèrent ces terrains. Des scientifiques et des gardes-nature interviennent régulièrement pour suivre l'évolution des espèces animales et végétales, entretenir les forêts et nettoyer les sentiers.
+      </p>
+
+      <div class="quiz-box" id="quiz-2">
+        <h4>Question 2 : Qui s'occupe principalement du financement et de la protection des ENS ?</h4>
+        <label><input type="radio" name="q2" value="faux"> Des entreprises privées.</label>
+        <label><input type="radio" name="q2" value="faux"> L'Union Européenne uniquement.</label>
+        <label><input type="radio" name="q2" value="vrai"> Les collectivités locales (départements, métropoles).</label>
+        
+        <button class="btn-modal btn-quiz" onclick="verifierReponse('quiz-2', 'vrai', 'Les ENS sont créés, financés et protégés à l’échelle locale par les départements ou les métropoles.')">Vérifier la réponse</button>
+        <div class="feedback"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    function verifierReponse(quizId, valeurCorrecte, explication) {
+      const quizBox = document.getElementById(quizId);
+      const radioCoche = quizBox.querySelector('input[type="radio"]:checked');
+      const feedbackDiv = quizBox.querySelector('.feedback');
+
+      // Si l'utilisateur n'a rien coché
+      if (!radioCoche) {
+        feedbackDiv.className = "feedback info";
+        feedbackDiv.innerHTML = "⚠️ S'il te plaît, choisis une réponse avant de vérifier !";
+        return;
+      }
+
+      // Si la réponse est correcte
+      if (radioCoche.value === valeurCorrecte) {
+        feedbackDiv.className = "feedback correct";
+        feedbackDiv.innerHTML = "🎉 <strong>Bravo, c'est juste !</strong><br>" + explication;
+      } else {
+        // Si la réponse est fausse
+        feedbackDiv.className = "feedback incorrect";
+        feedbackDiv.innerHTML = "❌ <strong>Dommage, ce n'est pas ça.</strong><br>La bonne réponse était la case verte. " + explication;
+      }
+    }
+  </script>
+
+</body>
+</html>

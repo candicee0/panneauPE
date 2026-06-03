@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Galerie - Bois de Serres</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <a href="index.html" class="btn-retour" title="Retour à l'accueil">←</a>
+
+  <header>Galerie Photos - Bois de Serres</header>
+
+  <div class="gallery">
+    <img src="photos/bois1.jpg" onclick="openModal(this.src)">
+    <img src="photos/bois2.jpg" onclick="openModal(this.src)">
+    <img src="photos/bois3.png" onclick="openModal(this.src)">
+  </div>
+
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span onclick="closeModal()" class="close">×</span>
+
+      <img id="modal-img">
+
+      <a id="mapsBtn"
+         href="https://www.google.com/maps/search/?api=1&query=Bois+de+Serres"
+         target="_blank">
+        <button class="btn-modal">S’y rendre</button>
+      </a>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+</body>
+</html>

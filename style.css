@@ -1,0 +1,398 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+/* HEADER MODERNE ET ATTRACTIF */
+header {
+  /* Un dégradé linéaire qui part d'un vert forêt profond vers le vert d'origine du site */
+  background: linear-gradient(135deg, #1b3e20 0%, #2e5d34 100%);
+  color: white;
+  padding: 35px 20px; /* Un peu plus de hauteur pour lui donner de l'importance */
+  text-align: center;
+  font-size: 32px; /* Titre légèrement agrandi */
+  font-weight: 800; /* Écriture plus grasse et percutante */
+  letter-spacing: 1.5px; /* Espacement moderne entre les lettres */
+  text-transform: uppercase; /* Titre en majuscules pour un look pro */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); /* Ombre plus douce et diffuse */
+  position: relative;
+}
+
+/* Petite ligne décorative en dessous du titre pour la touche finale */
+header::after {
+  content: '';
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background-color: #81c784; /* Vert clair lumineux */
+  border-radius: 2px;
+}
+
+/* 🔙 BOUTON RETOUR DE LA GALERIE */
+.btn-retour {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: #ffffff;
+  color: #2e5d34;
+  width: 45px;
+  height: 45px;
+  line-height: 41px; /* Aligne la flèche au centre */
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.btn-retour:hover {
+  background: #2e5d34;
+  color: #ffffff;
+  transform: translateX(-3px); /* Petit effet de glissement vers la gauche */
+}
+
+/* STRUCTURE ACCUEIL DEUX MOITIÉS */
+.home {
+  display: flex;
+  min-height: calc(100vh - 80px);
+}
+
+/* Moitié gauche : Bouton et mini-galerie en dessous */
+.left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #f4f4f4;
+  padding: 40px 30px;
+  gap: 25px;
+  border-right: 1px solid #e0e0e0;
+}
+
+/* Style pour le texte d'accroche */
+.intro-text {
+  font-size: 17px;
+  line-height: 1.6;
+  color: #444;
+  text-align: center;
+  margin: 0;
+  max-width: 500px;
+}
+
+.intro-text span {
+  display: block;
+  margin-top: 10px;
+  font-weight: 600;
+  color: #2e5d34;
+  font-size: 15px;
+}
+
+/* 👑 BOUTONS DE BASE (Structure identique) */
+.btn-galerie, .btn-modal {
+  background: #2e5d34;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  font-family: inherit;
+  text-align: center;
+  transition: background 0.2s, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* 📐 TAILLE SPECIFIQUE DU BOUTON ACCUEIL (AGRANDI !) */
+.btn-galerie {
+  margin-top: 15px;
+  padding: 18px 45px; /* Augmenté pour le rendre plus imposant */
+  font-size: 20px;     /* Augmenté */
+}
+
+/* 📐 TAILLE SPECIFIQUE DU BOUTON DES POPUPS ET LIENS */
+.btn-modal {
+  margin-top: 15px;
+  padding: 12px 25px;
+  font-size: 16px;
+}
+
+/* Conteneur pour forcer le bouton "En savoir plus" à aller à la ligne */
+.btn-container {
+  display: block;
+  width: 100%;
+}
+
+/* 🔥 EFFET DE SURVOL MAGNIFIQUE SUR LES DEUX */
+.btn-galerie:hover, .btn-modal:hover {
+  background: #1b3e20;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(46, 125, 50, 0.5);
+}
+
+/* Grille de photos élargie sous le bouton */
+.home-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  width: 100%;
+  max-width: 650px;
+  margin-top: 10px;
+}
+
+/* PHOTOS ACCUEIL */
+.home-gallery img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+}
+
+.home-gallery img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+}
+
+/* Moitié droite : Espace pour le texte */
+.right {
+  flex: 1;
+  background: #ffffff;
+  padding: 40px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.text-content {
+  max-width: 600px;
+  width: 100%;
+}
+
+.text-content h3 {
+  color: #2e5d34;
+  font-size: 22px;
+  margin-top: 25px;
+  margin-bottom: 10px;
+  border-bottom: 2px solid #2e5d34;
+  padding-bottom: 5px;
+  display: inline-block;
+}
+
+.text-content p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #444;
+  margin: 0 0 15px 0;
+}
+
+.text-content ul {
+  padding-left: 20px;
+  margin: 0;
+}
+
+.text-content li {
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: #444;
+}
+
+/* PAGE GALERIE INDÉPENDANTE */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 30px;
+  margin-top: 20px; /* Espace pour laisser la place au bouton retour */
+}
+
+.gallery img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  cursor: pointer;
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.gallery img:hover {
+  transform: scale(1.03);
+}
+
+/* POPUP / MODAL */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.85);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  padding: 25px;
+  text-align: center;
+  border-radius: 16px;
+  position: relative;
+  max-width: 90%;
+}
+
+.modal img {
+  max-width: 600px;
+  max-height: 70vh;
+  width: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 35px;
+  cursor: pointer;
+  color: #333;
+  transition: color 0.2s;
+}
+
+.close:hover {
+  color: #cc0000;
+}
+
+/* DESIGN DE LA PAGE DES EXPLICATIONS ENS */
+.ens-container {
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+  background-color: #f9f9f9;
+}
+
+.ens-content {
+  max-width: 800px;
+  width: 100%;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.ens-content h2 {
+  color: #2e5d34;
+  font-size: 24px;
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+
+.ens-content p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #444;
+}
+
+/* BLOC POUR LES QUESTIONS DU QUIZ */
+.quiz-box {
+  background-color: #f0f7f1;
+  border-left: 5px solid #2e5d34;
+  padding: 20px;
+  margin: 25px 0;
+  border-radius: 4px 8px 8px 4px;
+}
+
+.quiz-box h4 {
+  margin: 0 0 15px 0;
+  color: #1b3e20;
+  font-size: 16px;
+}
+
+.quiz-box label {
+  display: block;
+  margin-bottom: 10px;
+  cursor: pointer;
+  font-size: 15px;
+  color: #333;
+}
+
+.quiz-box input[type="radio"] {
+  margin-right: 10px;
+  accent-color: #2e5d34; /* Change la couleur de la case cochée en vert */
+}
+
+/* 🗺️ CONTENEUR DU PLAN ET DU BOUTON */
+.map-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin-top: 15px;
+  width: 100%;
+}
+
+/* Style de l'image du plan (DÉSORMAIS BIEN PRIS EN COMPTE) */
+.map-img {
+  width: 100%;
+  max-width: 400px; /* Taille très discrète demandée */
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Ajustement cosmétique pour le bouton de téléchargement */
+.btn-download {
+  margin-top: 5px !important;
+
+/* Styling des boutons spécifiques aux quiz */
+.btn-quiz {
+  margin-top: 10px !important;
+  padding: 8px 18px !important;
+  font-size: 14px !important;
+}
+
+/* Zone d'affichage des résultats (Masquée par défaut) */
+.feedback {
+  margin-top: 15px;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 15px;
+  display: none; /* S'active uniquement en JS */
+  line-height: 1.5;
+}
+
+/* Style si la réponse est VRAIE (Vert) */
+.feedback.correct {
+  display: block;
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+/* Style si la réponse est FAUSSE (Rouge) */
+.feedback.incorrect {
+  display: block;
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+/* Style si l'utilisateur a oublié de cocher (Orange/Bleu) */
+.feedback.info {
+  display: block;
+  background-color: #e2e3e5;
+  color: #383d41;
+  border: 1px solid #d6d8db;
+}
+}
