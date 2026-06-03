@@ -1,1 +1,1 @@
-https://github.com/candicee0/panneauPE.git
+https://candicee0.github.io/panneauPE/
