@@ -15,33 +15,94 @@
   <div class="ens-container">
     <div class="ens-content">
       
-      <h2>Pourquoi créer un Espace Naturel Sensible ?</h2>
-      <p>
-        Les ENS ont un double objectif : <strong>préserver</strong> la biodiversité locale face à l'urbanisation et <strong>ouvrir au public</strong> ces espaces de manière contrôlée afin de sensibiliser les citoyens à la protection de l'environnement.
-      </p>
+      <h2>1. Pourquoi créer un Espace Naturel Sensible ?</h2>
 
       <div class="quiz-box" id="quiz-1">
-        <h4>Question 1 : Quel est le rôle principal d'un ENS ?</h4>
-        <label><input type="radio" name="q1" value="faux"> Construire de nouvelles habitations écologiques.</label>
+        <h4>Selon toi, quel est le rôle principal d'un ENS ?</h4>
+        <label><input type="radio" name="q1" value="faux"> Interdire totalement l'accès aux gens pour préserver la biodiversité.</label>
         <label><input type="radio" name="q1" value="vrai"> Protéger la faune, la flore et ouvrir le lieu au public.</label>
-        <label><input type="radio" name="q1" value="faux"> Autoriser la chasse et la pêche sans restriction.</label>
+        <label><input type="radio" name="q1" value="faux"> Aménager des sentiers de randonnée.</label>
         
-        <button class="btn-modal btn-quiz" onclick="verifierReponse('quiz-1', 'vrai', 'Le rôle d’un ENS est de sauvegarder la biodiversité tout en permettant au public de la découvrir intelligemment.')">Vérifier la réponse</button>
+        <button class="btn-modal btn-quiz" onclick="verifierReponse('quiz-1', 'vrai')">Vérifier la réponse</button>
         <div class="feedback"></div>
       </div>
 
-      <h2>Comment fonctionne la gestion d'un ENS ?</h2>
       <p>
-        Ce sont les départements ou les métropoles qui acquièrent ou gèrent ces terrains. Des scientifiques et des gardes-nature interviennent régulièrement pour suivre l'évolution des espèces animales et végétales, entretenir les forêts et nettoyer les sentiers.
+        Les ENS ont un double objectif : <strong>préserver</strong> la biodiversité locale face à la pression de l'urbanisation et <strong>ouvrir au public</strong> ces espaces de manière contrôlée afin de sensibiliser les citoyens à la protection de l'environnement.
+      </p>
+
+      <hr style="border: 0; height: 1px; background: #eee; margin: 40px 0;">
+
+      <h2>2. Comment fonctionne la gestion d'un ENS ?</h2>
+      <p>
+        Les Espaces Naturels Sensibles (ENS) sont principalement définis et financés par les départements. Selon les délégations, les métropoles peuvent participer à leur gestion et à leur valorisation comme c'est le cas pour le Bois de Serres. Sur le plan financier, cette politique s'appuie sur la <strong>taxe d'aménagement</strong>. Elle confère aux collectivités un <strong>droit de préemption</strong> pour acheter prioritairement les parcelles privées menacées au sein du périmètre protégé.
       </p>
 
       <div class="quiz-box" id="quiz-2">
-        <h4>Question 2 : Qui s'occupe principalement du financement et de la protection des ENS ?</h4>
+        <h4>Qui s'occupe principalement du financement et de la protection des ENS ?</h4>
         <label><input type="radio" name="q2" value="faux"> Des entreprises privées.</label>
         <label><input type="radio" name="q2" value="faux"> L'Union Européenne uniquement.</label>
         <label><input type="radio" name="q2" value="vrai"> Les collectivités locales (départements, métropoles).</label>
         
-        <button class="btn-modal btn-quiz" onclick="verifierReponse('quiz-2', 'vrai', 'Les ENS sont créés, financés et protégés à l’échelle locale par les départements ou les métropoles.')">Vérifier la réponse</button>
+        <button class="btn-modal btn-quiz" onclick="verifierReponse('quiz-2', 'vrai')">Vérifier la réponse</button>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="quiz-box" id="quiz-finance">
+        <h4>Quel mécanisme permet d'acheter un terrain en priorité pour le protéger ?</h4>
+        <label><input type="radio" name="q_fin" value="faux"> La réquisition environnementale.</label>
+        <label><input type="radio" name="q_fin" value="vrai"> Le droit de préemption.</label>
+        <label><input type="radio" name="q_fin" value="faux"> La procédure de sauvegarde.</label>
+        
+        <button class="btn-modal btn-quiz" onclick="verifierReponse('quiz-finance', 'vrai')">Vérifier la réponse</button>
+        <div class="feedback"></div>
+      </div>
+
+      <hr style="border: 0; height: 1px; background: #eee; margin: 40px 0;">
+
+      <h2>3. Quel est le rôle écologique spécifique du Bois de Serres ?</h2>
+
+      <div class="quiz-box" id="quiz-tvb">
+        <h4>Selon toi, qu'est-ce que la « trame verte et bleue » ?</h4>
+        <label><input type="radio" name="q_tvb" value="vrai"> Un réseau de continuités écologiques terrestres et aquatiques.</label>
+        <label><input type="radio" name="q_tvb" value="faux"> Un programme de peinture écologique pour les bâtiments publics.</label>
+        <label><input type="radio" name="q_tvb" value="faux"> Le balisage couleur des chemins de randonnée.</label>
+        
+        <button class="btn-modal btn-quiz" onclick="verifierReponse('quiz-tvb', 'vrai')">Vérifier la réponse</button>
+        <div class="feedback"></div>
+      </div>
+
+      <p>
+        D'un point de vue de l'écologie du paysage, le Bois de Serres (120 hectares) constitutes un <strong>réservoir de biodiversité</strong> majeur. Il est relié à d'autres espaces naturels par des corridors (cours d'eau, haies), formant la <strong>trame verte et bleue</strong>. Ce réseau permet le déplacement des espèces et favorise le brassage génétique, en limitant les effets de fragmentation liés à l’autoroute A6.
+      </p>
+
+      <hr style="border: 0; height: 1px; background: #eee; margin: 40px 0;">
+
+      <h2>4. Comment le Bois de Serres imite-t-il les castors ?</h2>
+      <p>
+        Dans le cadre du programme environnemental ÉRABLE, le <strong>Ruisseau des Planches</strong> à Écully fait l'objet d'une renaturation inédite. Plutôt que d'utiliser des infrastructures lourdes, la Métropole de Lyon y construit de manière participative des <strong>ouvrages castors mimétiques</strong>.
+      </p>
+      <p>
+        Ces aménagements low-tech (branchages, feuillage, boue) ralentissent l'eau et permettent de <strong>rehausser le niveau de la nappe phréatique</strong>, et à améliorer la résilience des écosystèmes face aux sécheresses et aux incendies.
+      </p>
+
+      <div class="quiz-box" id="quiz-castor-1">
+        <h4>Quel est le but des « ouvrages castors » installés sur le ruisseau des Planches ?</h4>
+        <label><input type="radio" name="q_c1" value="faux"> Créer une piscine naturelle réservée à la faune forestière.</label>
+        <label><input type="radio" name="q_c1" value="vrai"> Améliorer la qualité physique du cours d'eau en régulant son débit et son niveau.</label>
+        <label><input type="radio" name="q_c1" value="faux"> Empêcher les vrais castors de venir s'installer dans le bois.</label>
+        
+        <button class="btn-modal btn-quiz" onclick="verifierReponse('quiz-castor-1', 'vrai')">Vérifier la réponse</button>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="quiz-box" id="quiz-castor-2">
+        <h4>Quel est l'avantage majeur de cette méthode mimétique par rapport à des digues classiques en béton ?</h4>
+        <label><input type="radio" name="q_c2" value="vrai"> Elle est bien plus économe,tout en favorisant la biodiversité et le bon fonctionnement des écosystèmes.</label>
+        <label><input type="radio" name="q_c2" value="faux"> Elle empêche totalement l'érosion des berges.</label>
+        <label><input type="radio" name="q_c2" value="faux"> Elle permet de transformer le ruisseau en canal navigable.</label>
+        
+        <button class="btn-modal btn-quiz" onclick="verifierReponse('quiz-castor-2', 'vrai')">Vérifier la réponse</button>
         <div class="feedback"></div>
       </div>
 
@@ -49,29 +110,30 @@
   </div>
 
   <script>
-    function verifierReponse(quizId, valeurCorrecte, explication) {
+    function verifierReponse(quizId, valeurCorrecte) {
       const quizBox = document.getElementById(quizId);
       const radioCoche = quizBox.querySelector('input[type="radio"]:checked');
       const feedbackDiv = quizBox.querySelector('.feedback');
 
-      // Si l'utilisateur n'a rien coché
       if (!radioCoche) {
         feedbackDiv.className = "feedback info";
-        feedbackDiv.innerHTML = "⚠️ S'il te plaît, choisis une réponse avant de vérifier !";
+        feedbackDiv.innerHTML = "⚠️ Choisis une réponse avant de vérifier !";
         return;
       }
 
-      // Si la réponse est correcte
       if (radioCoche.value === valeurCorrecte) {
         feedbackDiv.className = "feedback correct";
-        feedbackDiv.innerHTML = "🎉 <strong>Bravo, c'est juste !</strong><br>" + explication;
+        feedbackDiv.innerHTML = "🎉 <strong>Bravo, c'est juste !</strong>";
       } else {
-        // Si la réponse est fausse
         feedbackDiv.className = "feedback incorrect";
-        feedbackDiv.innerHTML = "❌ <strong>Dommage, ce n'est pas ça.</strong><br>La bonne réponse était la case verte. " + explication;
+        feedbackDiv.innerHTML = "❌ <strong>Dommage, ce n'est pas ça.</strong>";
       }
     }
   </script>
+
+  <footer style="margin-top: 50px; padding: 20px; font-size: 13px; color: #666; border-top: 1px solid #eee; text-align: center;">
+    <p><strong>Source :</strong> Enquête <em>« La Métropole de Lyon imite les castors pour régénérer ses cours d’eau »</em> (La Relève et La Peste, 2026).</p>
+  </footer>
 
 </body>
 </html>
