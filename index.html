@@ -4,6 +4,84 @@
   <meta charset="UTF-8">
   <title>Le Bois de Serres</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* Styles pour rendre le plan interactif sur la page d'accueil */
+    .map-container {
+      position: relative; /* Indispensable pour placer les boutons par-dessus */
+      display: inline-block;
+      width: 100%;
+    }
+    
+    .map-img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Style des pastilles sur la carte */
+    .pastille-carte {
+      position: absolute;
+      width: 28px;
+      height: 28px;
+      background-color: #2e7d32;
+      color: white;
+      border: 2px solid white;
+      border-radius: 50%;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      transition: transform 0.2s, background-color 0.2s;
+      padding: 0;
+      z-index: 10;
+    }
+    
+    .pastille-carte:hover {
+      transform: scale(1.2);
+      background-color: #1b5e20;
+    }
+
+    /* STYLE FORCÉ POUR LE CENTRAGE PARFAIT DE LA MODALE D'ITINÉRAIRE */
+    .modale-itineraire-fix {
+      display: none;
+      position: fixed;
+      z-index: 9999; /* Par-dessus tout le reste */
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6); /* Fond sombre transparent */
+    }
+
+    .modale-itineraire-contenu {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%); /* Centrage absolu horizontal et vertical */
+      background-color: white;
+      width: 90%;
+      max-width: 420px;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.3);
+      text-align: left;
+    }
+
+    /* Badges de transport dans la fenêtre modale */
+    .badge-transport {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: bold;
+      margin: 5px 3px 5px 0;
+    }
+    .conseille { background-color: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
+    .deconseille { background-color: #ffebee; color: #c62828; border: 1px solid #ffcdd2; }
+  </style>
 </head>
 
 <body>
@@ -34,20 +112,24 @@
         
         <h3>Qu'est-ce qu'un ENS ?</h3>
         <p>
-          ENS est l'acronyme de Espace Naturel Sensible. C'est un territoire protégé par les collectivités locales (départements ou métropoles) dans le but de sauvegarder des milieux naturels fragiles (zones humides, les forêts, prairies).
+          ENS est l'acronyme de Espace Naturel Sensible. C'est un territory protégé par les collectivités locales (départements ou métropoles) dans le but de sauvegarder des milieux naturels fragiles (zones humides, les forêts, prairies).
         </p>
         
         <div class="btn-container" style="margin-bottom: 35px; margin-top: 15px;">
           <a href="ens.html" class="btn-modal">En savoir plus</a>
         </div>
-		
+        
         
         <h3>Plan du bois</h3>
         
         <div class="map-container">
           <img src="photos/plan.webp" alt="Plan du Bois de Serres" class="map-img">
           
-          <a href="photos/plan.pdf" target="_blank" class="btn-modal btn-download">
+          <button class="pastille-carte" style="top: 25%; left: 30%;" onclick="openItineraryModal(1)">1</button>
+          <button class="pastille-carte" style="top: 50%; left: 70%;" onclick="openItineraryModal(2)">2</button>
+          <button class="pastille-carte" style="top: 75%; left: 45%;" onclick="openItineraryModal(3)">3</button>
+          
+          <a href="photos/plan.pdf" target="_blank" class="btn-modal btn-download" style="margin-top: 15px; display: inline-block;">
             Télécharger le plan
           </a>
         </div>
@@ -61,13 +143,103 @@
     <div class="modal-content">
       <span onclick="closeModal()" class="close">×</span>
       <img id="modal-img">
-      <a id="mapsBtn" href="https://www.google.com/maps/search/?api=1&query=Bois+de+Serres" target="_blank">
+      <a id="mapsBtn" href="https://maps.google.com/?cid=16603632053453079629&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQ" target="_blank">
         <button class="btn-modal">S’y rendre</button>
       </a>
     </div>
   </div>
 
+  <div id="itinerary-modal" class="modale-itineraire-fix">
+    <div class="modale-itineraire-contenu">
+      <span onclick="closeItineraryModal()" class="close" style="position: absolute; right: 15px; top: 10px; cursor: pointer; font-size: 24px;">&times;</span>
+      
+      <h3 id="itinerary-title" style="margin-top: 0; color: #2e7d32; padding-right: 20px;">Nom de l'entrée</h3>
+      <p id="itinerary-desc" style="font-size: 14px; color: #444; line-height: 1.4; margin-bottom: 15px;"></p>
+      
+      <div style="margin: 15px 0;">
+        <strong style="font-size: 14px; display: block; margin-bottom: 5px;">Options d'accès :</strong>
+        <div id="badgePied" class="badge-transport">🚶 À pied</div>
+        <div id="badgeBus" class="badge-transport">🚌 Bus</div>
+        <div id="badgeVoiture" class="badge-transport">🚗 Voiture</div>
+      </div>
+
+      <a id="itinerary-maps-btn" href="#" target="_blank" class="btn-modal" style="display: block; text-align: center; text-decoration: none; margin-top: 20px;">
+        🗺️ Ouvrir sur Google Maps
+      </a>
+    </div>
+  </div>
+
   <script src="script.js"></script>
+  
+  <script>
+    /* CODE JAVASCRIPT POUR LES POINTS DE LA CARTE */
+    const donnéesPoints = {
+      1: {
+        titre: "Entrée Nord - Chemin de la Beffe",
+        desc: "Accès idéal pour les sentiers du haut. Un parking de terre est disponible en lisière de forêt.",
+        pied: "conseille",
+        bus: "deconseille",
+        voiture: "conseille",
+        maps: "https://maps.app.goo.gl/uXv7XbAnK14YV7R38" // Exemple de vrai lien maps
+      },
+      2: {
+        titre: "Entrée Est - Ruisseau des Planches",
+        desc: "Parfait pour visiter la zone de renaturation et observer les aménagements castors.",
+        pied: "conseille",
+        bus: "conseille",
+        voiture: "deconseille",
+        maps: "https://maps.app.goo.gl/wJ5ZJ9bAnK14YV7R39"
+      },
+      3: {
+        titre: "Entrée Sud - Sentier du Viaduc",
+        desc: "Accès piétonnier boisé et ombragé, sentier agréable relié à la Trame Verte.",
+        pied: "conseille",
+        bus: "conseille",
+        voiture: "deconseille",
+        maps: "https://maps.app.goo.gl/zK4ZJ9bAnK14YV7R40"
+      }
+    };
+
+    function openItineraryModal(id) {
+      const data = donnéesPoints[id];
+      if (!data) return;
+
+      document.getElementById('itinerary-title').innerText = data.titre;
+      document.getElementById('itinerary-desc').innerText = data.desc;
+      document.getElementById('itinerary-maps-btn').href = data.maps;
+
+      // Configuration des badges (Conseillé / Déconseillé)
+      updateBadge('badgePied', data.pied, "🚶 À pied");
+      updateBadge('badgeBus', data.bus, "🚌 Bus");
+      updateBadge('badgeVoiture', data.voiture, "🚗 Voiture");
+
+      // Ouvre la modale d'itinéraire
+      document.getElementById('itinerary-modal').style.display = "block";
+    }
+
+    function updateBadge(elementId, status, texte) {
+      const badge = document.getElementById(elementId);
+      if (status === "conseille") {
+        badge.className = "badge-transport conseille";
+        badge.innerText = texte + " • Conseillé 👍";
+      } else {
+        badge.className = "badge-transport deconseille";
+        badge.innerText = texte + " • Déconseillé ❌";
+      }
+    }
+
+    function closeItineraryModal() {
+      document.getElementById('itinerary-modal').style.display = "none";
+    }
+
+    // Fermer la modale si on clique sur l'arrière-plan sombre
+    window.addEventListener('click', function(event) {
+      const itineraryModal = document.getElementById('itinerary-modal');
+      if (event.target === itineraryModal) {
+        closeItineraryModal();
+      }
+    });
+  </script>
 
 </body>
 </html>
