@@ -13,16 +13,22 @@
       position: relative;
       display: inline-block;
       width: 100%;
+      cursor: pointer; /* Indique que le plan est cliquable */
     }
     
     .map-img {
       width: 100%;
       height: auto;
       display: block;
+      transition: opacity 0.2s ease-in-out;
     }
 
-    /* STYLE FORCÉ POUR LE CENTRAGE PARFAIT DE LA MODALE D'ITINÉRAIRE */
-    .modale-itineraire-fix {
+    .map-img:hover {
+      opacity: 0.85; /* Effet de survol discret */
+    }
+
+    /* STYLE FORCÉ POUR LE CENTRAGE PARFAIT DE LA MODALE D'ITINÉRAIRE ET DU PLAN */
+    .modale-itineraire-fix, .modale-plan-fix {
       display: none;
       position: fixed;
       z-index: 9999; /* Par-dessus tout le reste */
@@ -30,7 +36,7 @@
       top: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.6); /* Fond sombre transparent */
+      background-color: rgba(0, 0, 0, 0.7); /* Fond sombre transparent ajusté */
     }
 
     .modale-itineraire-contenu {
@@ -45,6 +51,30 @@
       border-radius: 12px;
       box-shadow: 0 5px 25px rgba(0,0,0,0.3);
       text-align: left;
+    }
+
+    /* Structure de la nouvelle modale pour le plan grand format */
+    .modale-plan-contenu {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      width: 95%;
+      max-width: 850px;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 5px 30px rgba(0,0,0,0.4);
+      text-align: center;
+    }
+
+    .modale-plan-img {
+      width: 100%;
+      height: auto;
+      max-height: 75vh; /* Évite que l'image dépasse de l'écran verticalement */
+      object-fit: contain;
+      border-radius: 6px;
+      margin-top: 10px;
     }
 
     /* Badges de transport dans la fenêtre modale */
@@ -111,7 +141,7 @@
         
         <h3>Qu'est-ce qu'un ENS ?</h3>
         <p>
-          ENS est l'acronyme de Espace Naturel Sensible. C'est un territoire protégé par les collectivités locales (départements ou métropoles) dans le but de sauvegarder des milieux naturels fragiles (zones humides, les forêts, prairies).
+          ENS est l'acronyme de Espace Naturel Sensible. C'est un territory protégé par les collectivités locales (départements ou métropoles) dans le but de sauvegarder des milieux naturels fragiles (zones humides, les forêts, prairies).
         </p>
         
         <div class="btn-container" style="margin-bottom: 35px; margin-top: 15px;">
@@ -121,7 +151,7 @@
         
         <h3>Plan du bois</h3>
         
-        <div class="map-container">
+        <div class="map-container" onclick="openPlanModal()">
           <img src="photos/plan_du_bois.jpeg" alt="Plan du Bois de Serres" class="map-img">
         </div>
 
@@ -153,6 +183,14 @@
       </div>
     </div>
 
+  </div>
+
+  <div id="plan-modal" class="modale-plan-fix">
+    <div class="modale-plan-contenu">
+      <span onclick="closePlanModal()" class="close" style="position: absolute; right: 15px; top: 10px; cursor: pointer; font-size: 28px; color: #555;">×</span>
+      <h3 style="margin-top: 5px; color: #2e7d32; font-size: 18px;">Plan du Bois de Serres</h3>
+      <img src="photos/plan_du_bois.jpeg" alt="Plan du Bois de Serres - Agrandissement" class="modale-plan-img">
+    </div>
   </div>
 
   <div id="itinerary-modal" class="modale-itineraire-fix">
@@ -236,10 +274,25 @@
       document.getElementById('itinerary-modal').style.display = "none";
     }
 
+    /* CODE JAVASCRIPT POUR LA MODALE DU PLAN */
+    function openPlanModal() {
+      document.getElementById('plan-modal').style.display = "block";
+    }
+
+    function closePlanModal() {
+      document.getElementById('plan-modal').style.display = "none";
+    }
+
+    // Gestion globale de la fermeture en cliquant en dehors des modales
     window.addEventListener('click', function(event) {
       const itineraryModal = document.getElementById('itinerary-modal');
+      const planModal = document.getElementById('plan-modal');
+      
       if (event.target === itineraryModal) {
         closeItineraryModal();
+      }
+      if (event.target === planModal) {
+        closePlanModal();
       }
     });
   </script>
