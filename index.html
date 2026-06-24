@@ -8,9 +8,9 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/5.4.4/photoswipe.min.css">
   
   <style>
-    /* Styles pour rendre le plan interactif sur la page d'accueil */
+    /* Styles pour le plan sur la page d'accueil */
     .map-container {
-      position: relative; /* Indispensable pour placer les boutons par-dessus */
+      position: relative;
       display: inline-block;
       width: 100%;
     }
@@ -19,32 +19,6 @@
       width: 100%;
       height: auto;
       display: block;
-    }
-
-    /* Style des pastilles sur la carte */
-    .pastille-carte {
-      position: absolute;
-      width: 28px;
-      height: 28px;
-      background-color: #2e7d32;
-      color: white;
-      border: 2px solid white;
-      border-radius: 50%;
-      font-size: 14px;
-      font-weight: bold;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-      transition: transform 0.2s, background-color 0.2s;
-      padding: 0;
-      z-index: 10;
-    }
-    
-    .pastille-carte:hover {
-      transform: scale(1.2);
-      background-color: #1b5e20;
     }
 
     /* STYLE FORCÉ POUR LE CENTRAGE PARFAIT DE LA MODALE D'ITINÉRAIRE */
@@ -85,7 +59,7 @@
     .conseille { background-color: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
     .deconseille { background-color: #ffebee; color: #c62828; border: 1px solid #ffcdd2; }
 
-    /* REPRISE DU STYLE DE LA GALERIE POUR L'INDEX (Exactement comme avant) */
+    /* REPRISE DU STYLE DE LA GALERIE POUR L'INDEX */
     .home-gallery {
       display: grid !important;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important;
@@ -101,7 +75,7 @@
     }
     .home-gallery img {
       width: 100% !important;
-      height: 220px !important; /* Retour à la taille initiale de 220px */
+      height: 220px !important; 
       object-fit: cover !important;
       display: block;
       cursor: pointer !important;
@@ -109,7 +83,6 @@
     }
     .home-gallery img:hover {
       transform: scale(1.03) !important;
-    
     }
   </style>
 </head>
@@ -138,7 +111,7 @@
         
         <h3>Qu'est-ce qu'un ENS ?</h3>
         <p>
-          ENS est l'acronyme de Espace Naturel Sensible. C'est un territoire protégé par les collectivités locales (départements ou métropoles) dans le but de sauvegarder des milieux naturels fragiles (zones humides, les forêts, prairies).
+          ENS est l'acronyme de Espace Naturel Sensible. C'est un territory protégé par les collectivités locales (départements ou métropoles) dans le but de sauvegarder des milieux naturels fragiles (zones humides, les forêts, prairies).
         </p>
         
         <div class="btn-container" style="margin-bottom: 35px; margin-top: 15px;">
@@ -150,13 +123,30 @@
         
         <div class="map-container">
           <img src="photos/plan_du_bois.jpeg" alt="Plan du Bois de Serres" class="map-img">
+        </div>
+
+        <div class="liste-itineraires" style="margin-top: 25px;">
+          <h4 style="margin-bottom: 12px; color: #2e7d32;">📍 Liste des accès au bois :</h4>
           
-          <button class="pastille-carte" style="top: 25%; left: 30%;" onclick="openItineraryModal(1)">1</button>
-          <button class="pastille-carte" style="top: 50%; left: 70%;" onclick="openItineraryModal(2)">2</button>
-          <button class="pastille-carte" style="top: 75%; left: 45%;" onclick="openItineraryModal(3)">3</button>
-          
-          <a href="photos/plan.pdf" target="_blank" class="btn-modal btn-download" style="margin-top: 15px; display: inline-block;">
-            Télécharger le plan
+          <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #eee;">
+            <span style="font-size: 14px; padding-right: 10px;"><strong>1.</strong> Entrée Nord - Sentier du Bois de Serres</span>
+            <button class="btn-modal" style="padding: 6px 12px; font-size: 13px; margin: 0; white-space: nowrap;" onclick="openItineraryModal(1)">Voir l'accès</button>
+          </div>
+
+          <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #eee;">
+            <span style="font-size: 14px; padding-right: 10px;"><strong>2.</strong> Entrée Est - Ruisseau des Planches</span>
+            <button class="btn-modal" style="padding: 6px 12px; font-size: 13px; margin: 0; white-space: nowrap;" onclick="openItineraryModal(2)">Voir l'accès</button>
+          </div>
+
+          <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #eee;">
+            <span style="font-size: 14px; padding-right: 10px;"><strong>3.</strong> Entrée Sud - Sentier du Viaduc</span>
+            <button class="btn-modal" style="padding: 6px 12px; font-size: 13px; margin: 0; white-space: nowrap;" onclick="openItineraryModal(3)">Voir l'accès</button>
+          </div>
+        </div>
+
+        <div style="margin-top: 25px;">
+          <a href="photos/plan.pdf" target="_blank" class="btn-modal btn-download" style="display: inline-block;">
+            Télécharger le plan en PDF
           </a>
         </div>
 
@@ -180,7 +170,7 @@
       </div>
 
       <a id="itinerary-maps-btn" href="#" target="_blank" class="btn-modal" style="display: block; text-align: center; text-decoration: none; margin-top: 20px;">
-        🗺️ Ouvrir sur Google Maps
+        Ouvrir sur Google Maps
       </a>
     </div>
   </div>
@@ -188,7 +178,7 @@
   <script src="script.js"></script>
   
   <script>
-    /* CODE JAVASCRIPT POUR LES POINTS DE LA CARTE */
+    /* CODE JAVASCRIPT POUR LES ITINÉRAIRES */
     const donnéesPoints = {
       1: {
         titre: "Entrée Nord - Sentier du Bois de Serres",
@@ -257,11 +247,9 @@
   <script type="module">
     import PhotoSwipeLightbox from 'https://cdnjs.cloudflare.com/ajax/libs/photoswipe/5.4.4/photoswipe-lightbox.esm.min.js';
     
-    // Liste exacte des numéros de photos demandés
     const listePhotos = [8, 48, 34, 60, 28, 42]; 
     const conteneur = document.getElementById('pswp-home-gallery');
 
-    // Génération automatique des 6 liens et images spécifiques
     listePhotos.forEach(num => {
       const cheminImage = `photos/Photos_bois/bois (${num}).jpg`;
       
@@ -273,7 +261,6 @@
       img.src = cheminImage;
       img.alt = `Cliché du Bois de Serres n°${num}`;
 
-      // Récupération de la taille réelle pour PhotoSwipe au chargement du thumbnail
       img.onload = function() {
         lien.dataset.pswpWidth = this.naturalWidth;
         lien.dataset.pswpHeight = this.naturalHeight;
@@ -283,7 +270,6 @@
       conteneur.appendChild(lien);
     });
 
-    // Initialisation de PhotoSwipe pour l'index
     const lightbox = new PhotoSwipeLightbox({
       gallery: '#pswp-home-gallery',
       children: 'a',

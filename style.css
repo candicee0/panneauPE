@@ -395,4 +395,33 @@ header::after {
   color: #383d41;
   border: 1px solid #d6d8db;
 }
+/* Style des pastilles sur la carte */
+.pastille-carte {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  background-color: #d32f2f; /* Rouge au lieu de vert */
+  color: white;
+  border: 2px solid white;
+  border-radius: 50%;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  padding: 0;
+  z-index: 10;
+  
+  /* CES DEUX LIGNES GARANTISSENT L'ANCRAGE FIXE SUR L'IMAGE */
+  transform: translate(-50%, -50%);
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+/* Modification du hover pour ne pas casser le centrage */
+.pastille-carte:hover {
+  transform: translate(-50%, -50%) scale(1.2);
+  background-color: #b71c1c; /* Rouge plus foncé au survol */
+}
 }
