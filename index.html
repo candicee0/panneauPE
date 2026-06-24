@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <title>Le Bois de Serres</title>
   <link rel="stylesheet" href="style.css">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/5.4.4/photoswipe.min.css">
+  
   <style>
     /* Styles pour rendre le plan interactif sur la page d'accueil */
     .map-container {
@@ -81,6 +84,33 @@
     }
     .conseille { background-color: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
     .deconseille { background-color: #ffebee; color: #c62828; border: 1px solid #ffcdd2; }
+
+    /* REPRISE DU STYLE DE LA GALERIE POUR L'INDEX (Exactement comme avant) */
+    .home-gallery {
+      display: grid !important;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important;
+      gap: 20px !important;
+      padding: 20px 0 !important;
+      margin-top: 15px !important;
+    }
+    .home-gallery a {
+      display: block;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .home-gallery img {
+      width: 100% !important;
+      height: 220px !important; /* Retour à la taille initiale de 220px */
+      object-fit: cover !important;
+      display: block;
+      cursor: pointer !important;
+      transition: transform 0.2s !important;
+    }
+    .home-gallery img:hover {
+      transform: scale(1.03) !important;
+    
+    }
   </style>
 </head>
 
@@ -93,18 +123,14 @@
     <div class="left">
       <p class="intro-text">
         Plonge au cœur du Bois de Serres à travers une sélection de clichés exclusifs. 
-        <span>Clique sur les photos pour révéler la localisation exacte du cliché et préparer ta prochaine sortie au bois !</span>
+        <span>Clique sur les photos pour les agrandir ! </span>
       </p>
       
       <a href="galerie.html" class="btn-galerie">
         Explorer la galerie photos
       </a>
 
-      <div class="home-gallery">
-        <img src="photos/bois1.jpg" alt="Bois 1" onclick="openModal(this.src)">
-        <img src="photos/bois2.jpg" alt="Bois 2" onclick="openModal(this.src)">
-        <img src="photos/bois3.png" alt="Bois 3" onclick="openModal(this.src)">
-      </div>
+      <div class="home-gallery" id="pswp-home-gallery"></div>
     </div>
 
     <div class="right">
@@ -112,7 +138,7 @@
         
         <h3>Qu'est-ce qu'un ENS ?</h3>
         <p>
-          ENS est l'acronyme de Espace Naturel Sensible. C'est un territory protégé par les collectivités locales (départements ou métropoles) dans le but de sauvegarder des milieux naturels fragiles (zones humides, les forêts, prairies).
+          ENS est l'acronyme de Espace Naturel Sensible. C'est un territoire protégé par les collectivités locales (départements ou métropoles) dans le but de sauvegarder des milieux naturels fragiles (zones humides, les forêts, prairies).
         </p>
         
         <div class="btn-container" style="margin-bottom: 35px; margin-top: 15px;">
@@ -139,19 +165,9 @@
 
   </div>
 
-  <div id="modal" class="modal">
-    <div class="modal-content">
-      <span onclick="closeModal()" class="close">×</span>
-      <img id="modal-img">
-      <a id="mapsBtn" href="https://maps.google.com/?cid=16603632053453079629&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQ" target="_blank">
-        <button class="btn-modal">S’y rendre</button>
-      </a>
-    </div>
-  </div>
-
   <div id="itinerary-modal" class="modale-itineraire-fix">
     <div class="modale-itineraire-contenu">
-      <span onclick="closeItineraryModal()" class="close" style="position: absolute; right: 15px; top: 10px; cursor: pointer; font-size: 24px;">&times;</span>
+      <span onclick="closeItineraryModal()" class="close" style="position: absolute; right: 15px; top: 10px; cursor: pointer; font-size: 24px;">×</span>
       
       <h3 id="itinerary-title" style="margin-top: 0; color: #2e7d32; padding-right: 20px;">Nom de l'entrée</h3>
       <p id="itinerary-desc" style="font-size: 14px; color: #444; line-height: 1.4; margin-bottom: 15px;"></p>
@@ -175,28 +191,28 @@
     /* CODE JAVASCRIPT POUR LES POINTS DE LA CARTE */
     const donnéesPoints = {
       1: {
-        titre: "Entrée Nord - Chemin de la Beffe",
-        desc: "Accès idéal pour les sentiers du haut. Un parking de terre est disponible en lisière de forêt.",
+        titre: "Entrée Nord - Sentier du Bois de Serres",
+        desc: "Accès idéal pour accéder à la clairière et les sentiers du haut. Pour y aller en voiture, des places sont sur le sentier du Bois de Serres directement, ou bien sur le parking de la gare des Mouilles. A pied, l'entrée est assez loin mais ça reste faisable. Enfin, il est possible de prendre le bus 3 direction Limonest Le Puy d'Or jusqu'à l'arrêt Bois de dardilly, puis de marcher 3 minutes.",
         pied: "conseille",
-        bus: "deconseille",
+        bus: "conseille",
         voiture: "conseille",
-        maps: "https://maps.app.goo.gl/uXv7XbAnK14YV7R38" // Exemple de vrai lien maps
+        maps: "https://maps.app.goo.gl/uXv7XbAnK14YV7R38" 
       },
       2: {
-        titre: "Entrée Est - Chemin de Charbonnière",
+        titre: "Entrée Est - Ruisseau des Planches",
         desc: "Parfait pour visiter la zone de renaturation et observer les aménagements castors.",
         pied: "conseille",
-        bus: "deconseille",
+        bus: "conseille",
         voiture: "deconseille",
-        maps: "https://maps.app.goo.gl/tAcWkTtSzNUkBTtc6"
+        maps: "https://maps.app.goo.gl/wJ5ZJ9bAnK14YV7R39"
       },
       3: {
-        titre: "Entrée Sud - Chemin des rivières",
+        titre: "Entrée Sud - Sentier du Viaduc",
         desc: "Accès piétonnier boisé et ombragé, sentier agréable relié à la Trame Verte.",
         pied: "conseille",
-        bus: "deconseille",
+        bus: "conseille",
         voiture: "deconseille",
-        maps: "https://maps.app.goo.gl/MJUbUqSG5x9ZShND7"
+        maps: "https://maps.app.goo.gl/zK4ZJ9bAnK14YV7R40"
       }
     };
 
@@ -208,12 +224,10 @@
       document.getElementById('itinerary-desc').innerText = data.desc;
       document.getElementById('itinerary-maps-btn').href = data.maps;
 
-      // Configuration des badges (Conseillé / Déconseillé)
       updateBadge('badgePied', data.pied, "🚶 À pied");
       updateBadge('badgeBus', data.bus, "🚌 Bus");
       updateBadge('badgeVoiture', data.voiture, "🚗 Voiture");
 
-      // Ouvre la modale d'itinéraire
       document.getElementById('itinerary-modal').style.display = "block";
     }
 
@@ -232,13 +246,53 @@
       document.getElementById('itinerary-modal').style.display = "none";
     }
 
-    // Fermer la modale si on clique sur l'arrière-plan sombre
     window.addEventListener('click', function(event) {
       const itineraryModal = document.getElementById('itinerary-modal');
       if (event.target === itineraryModal) {
         closeItineraryModal();
       }
     });
+  </script>
+
+  <script type="module">
+    import PhotoSwipeLightbox from 'https://cdnjs.cloudflare.com/ajax/libs/photoswipe/5.4.4/photoswipe-lightbox.esm.min.js';
+    
+    // Liste exacte des numéros de photos demandés
+    const listePhotos = [8, 48, 34, 60, 28, 42]; 
+    const conteneur = document.getElementById('pswp-home-gallery');
+
+    // Génération automatique des 6 liens et images spécifiques
+    listePhotos.forEach(num => {
+      const cheminImage = `photos/Photos_bois/bois (${num}).jpg`;
+      
+      const lien = document.createElement('a');
+      lien.href = cheminImage;
+      lien.target = '_blank';
+
+      const img = document.createElement('img');
+      img.src = cheminImage;
+      img.alt = `Cliché du Bois de Serres n°${num}`;
+
+      // Récupération de la taille réelle pour PhotoSwipe au chargement du thumbnail
+      img.onload = function() {
+        lien.dataset.pswpWidth = this.naturalWidth;
+        lien.dataset.pswpHeight = this.naturalHeight;
+      };
+
+      lien.appendChild(img);
+      conteneur.appendChild(lien);
+    });
+
+    // Initialisation de PhotoSwipe pour l'index
+    const lightbox = new PhotoSwipeLightbox({
+      gallery: '#pswp-home-gallery',
+      children: 'a',
+      pswpModule: () => import('https://cdnjs.cloudflare.com/ajax/libs/photoswipe/5.4.4/photoswipe.esm.min.js'),
+      initialZoomLevel: 'fit', 
+      secondaryZoomLevel: 'orig',
+    });
+    
+    lightbox.init();
   </script>
 
 </body>

@@ -4,6 +4,36 @@
   <meta charset="UTF-8">
   <title>Galerie - Bois de Serres</title>
   <link rel="stylesheet" href="style.css">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/5.4.4/photoswipe.min.css">
+  <style>
+    /* Grille de miniatures */
+    .gallery {
+      display: grid !important;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important;
+      gap: 20px !important;
+      padding: 20px !important;
+      max-width: 1200px !important;
+      margin: 0 auto !important;
+    }
+    .gallery a {
+      display: block;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .gallery img {
+      width: 100% !important;
+      height: 220px !important;
+      object-fit: cover !important;
+      display: block;
+      cursor: pointer !important;
+      transition: transform 0.2s !important;
+    }
+    .gallery img:hover {
+      transform: scale(1.03) !important;
+    }
+  </style>
 </head>
 
 <body>
@@ -12,27 +42,51 @@
 
   <header>Galerie Photos - Bois de Serres</header>
 
-  <div class="gallery">
-    <img src="photos/bois1.jpg" onclick="openModal(this.src)">
-    <img src="photos/bois2.jpg" onclick="openModal(this.src)">
-    <img src="photos/bois3.png" onclick="openModal(this.src)">
-  </div>
-
-  <div id="modal" class="modal">
-    <div class="modal-content">
-      <span onclick="closeModal()" class="close">×</span>
-
-      <img id="modal-img">
-
-      <a id="mapsBtn"
-         href="https://www.google.com/maps/search/?api=1&query=Bois+de+Serres"
-         target="_blank">
-        <button class="btn-modal">S’y rendre</button>
-      </a>
-    </div>
-  </div>
+  <div class="gallery" id="pswp-gallery"></div>
 
   <script src="script.js"></script>
+
+  <script type="module">
+    import PhotoSwipeLightbox from 'https://cdnjs.cloudflare.com/ajax/libs/photoswipe/5.4.4/photoswipe-lightbox.esm.min.js';
+    
+    const totalPhotos = 62; 
+    const conteneur = document.getElementById('pswp-gallery');
+
+    // Génération automatique des 62 liens et images
+    for (let i = 1; i <= totalPhotos; i++) {
+      const cheminImage = `photos/Photos_bois/bois (${i}).jpg`;
+      
+      const lien = document.createElement('a');
+      lien.href = cheminImage;
+      lien.target = '_blank';
+
+      const img = document.createElement('img');
+      img.src = cheminImage;
+      img.alt = `Cliché du Bois de Serres n°${i}`;
+
+      // Dès que la miniature est chargée, on récupère sa taille d'origine réelle
+      img.onload = function() {
+        lien.dataset.pswpWidth = this.naturalWidth;
+        lien.dataset.pswpHeight = this.naturalHeight;
+      };
+
+      lien.appendChild(img);
+      conteneur.appendChild(lien);
+    }
+
+    // Initialisation de PhotoSwipe
+    const lightbox = new PhotoSwipeLightbox({
+      gallery: '#pswp-gallery',
+      children: 'a',
+      pswpModule: () => import('https://cdnjs.cloudflare.com/ajax/libs/photoswipe/5.4.4/photoswipe.esm.min.js'),
+      
+      // Force l'affichage à respecter la vraie taille de l'image
+      initialZoomLevel: 'fit', 
+      secondaryZoomLevel: 'orig', // Le niveau de zoom secondaire passe à 100% de la taille d'origine
+    });
+    
+    lightbox.init();
+  </script>
 
 </body>
 </html>
